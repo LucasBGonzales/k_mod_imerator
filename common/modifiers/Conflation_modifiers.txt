@@ -1,0 +1,7 @@
+culture_conflated_recently = {
+	culture_happiness_modifier = -0.01
+} 
+
+promoted_administrators_in_subcultures = {
+	culture_citizen_output = 0.05
+}

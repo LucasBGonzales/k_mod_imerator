@@ -1,0 +1,170 @@
+namespace = subject_rework
+
+subject_rework.1 = {
+		type = country_event
+		title = "Subject prepares demands"
+		hidden = yes
+		trigger = {
+			is_subject = yes
+			current_date > 460.1.1 #You get some time to build yourself a normal army after startup.
+			NOT = { is_subject_type = tributary } #tributaries are already covered by country_diplomacy.40
+			has_land = yes
+			is_ai = yes
+			NOT = { has_truce_with = overlord } #to prevent subjects immediately rebelling after being subjugated
+			#war = no #this may cause oddities
+			NOT = { 
+				has_opinion = { modifier = obedient_vassal target = overlord } #to prevent this event being spammed more than once every ten years per vassal
+			}
+			OR = {
+				has_subject_loyalty < 35
+				AND = {
+						has_subject_loyalty < 50
+						OR = {
+							overlord = { has_war_exhaustion > 10 }
+							overlord = { stability < 30 }
+							overlord = { has_civil_war = yes}
+						}
+				}
+			}
+		}
+		
+		immediate = {
+				save_scope_as = subject_enough
+				capital_scope = { save_scope_as = subject_capital }
+				overlord = {	
+					trigger_event = {
+						id = subject_rework.2
+						days = { 40 365 }
+					}
+				}	
+		}
+		
+
+	}
+
+
+#Subject has had enough - rework of country_diplomacy.40 but for non-tributaries. Needs a pulse to trigger it.
+subject_rework.2 = {
+		type = country_event
+		title = "Subject has had enough"
+		desc = "Dissatisfied with their subjugation under your empire, powerful factions within [SCOPE.sCountry('subject_enough').GetName] have been pushing their ruler to declare independence."
+		picture = war_chest
+		left_portrait = scope:subject_enough.current_ruler
+		goto_location = scope:subject_capital
+		trigger = {
+			scope:subject_enough = {
+						has_land = yes
+						is_ai = yes
+						is_subject = yes
+						NOT = { has_truce_with = overlord } #to prevent subjects immediately rebelling after being subjugated
+			#war = no #this may cause oddities
+						NOT = { 
+							has_opinion = { modifier = obedient_vassal target = overlord }
+						}
+						OR = {
+							has_subject_loyalty < 35
+							AND = {
+									has_subject_loyalty < 50
+									OR = {
+										overlord = { has_war_exhaustion > 10 }
+										overlord = { stability < 30 }
+										overlord = { has_civil_war = yes}
+									}
+							}
+						}
+					}
+			
+		}
+		
+		
+		option = { 
+			name = "Let them go."
+			release_subject = scope:subject_enough
+			add_opinion = {
+				modifier = broke_tributary_status
+				target = scope:subject_enough
+			}
+			scope:subject_capital = { add_claim = root }
+			ai_chance = {
+				factor = 2.5
+			}
+		}
+		
+		option = { 
+			name = "Perhaps some gold will change their minds."
+			trigger = {
+				treasury > 0
+			}
+			add_treasury = {
+							value = -50
+							multiply = scope:subject_enough.num_of_provinces
+			}
+			scope:subject_enough = {
+				add_treasury = {
+							value = 50
+							multiply = scope:subject_enough.num_of_provinces
+				}
+				add_opinion = {
+					modifier = obedient_vassal #this should decay over 10 years
+					target = overlord
+				}
+			}
+			ai_chance = {
+				factor = 20
+				modifier = {
+					factor = 0
+					treasury < 0
+				}
+			}
+		}
+		
+		option = { 
+			name = "Political efforts might smooth this over."
+			trigger = {
+				political_influence > 50
+			}
+			add_political_influence = -50			
+			scope:subject_enough = {
+				add_opinion = {
+					modifier = obedient_vassal #this should decay over 10 years
+					target = overlord
+				}
+			}
+			ai_chance = {
+				factor = 75
+			}
+		}
+		
+		option = { 
+			name = "This means war!"
+			trigger = {
+				scope:subject_enough = {
+					war = no
+				}
+			}
+			add_opinion = {
+				modifier = broke_tributary_status
+				target = scope:subject_enough
+			}
+			scope:subject_enough = { 
+				add_opinion = {
+				modifier = opinion_declared_war
+				target = ROOT
+				}
+			}
+			scope:subject_capital = { add_claim = root }
+			release_subject = scope:subject_enough
+			declare_war_with_wargoal = {
+					war_goal = raiding_wargoal
+					#province = scope:subject_capital
+					target = scope:subject_enough
+			}
+			ai_chance = {
+				factor = 2.5
+				modifier = {
+					factor = 0
+					war = yes
+				}
+			}
+		}
+	}

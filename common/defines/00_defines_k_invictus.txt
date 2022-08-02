@@ -1,0 +1,80 @@
+﻿NGame = {
+	END_DATE = "753.12.30"
+
+
+	MIN_MERCENARIES_PER_REGION = 2 # 3
+	MERCENARIES_PER_CITY = 0.05 # 0.1
+
+	MERCENARY_BASE_AMOUNT = 5 # 2
+	MERCENARY_PER_POP_SCALE = 0.01 #0.05
+	MERCENARY_AMOUNT_DEVIATION = 0.15 # 0.25
+}
+
+NLevy = {
+	RAISE_LEVY_COOLDOWN_MONTHS = 2 # 4 number of months of cooldown after disbanding before you can raise a levy again
+}
+
+NCountry = {	
+	SLAVE_DISTRO_MIN_NUM_OF_STATES = 5  #Slaves captured will be distributed to these number of states near the capital plus capital unless there are less states, changed to 5 for less capital famines
+	POTENTIAL_MISSION_COUNT = 5 # Number of random missions to pick between
+	MINIMUM_COLONISATION_POP = 3 # 8 Easier Colonization
+}
+
+NCombat = {
+	ASSAULT_ATTACKER_LOSS = 0.9 #1.25
+
+
+	BATTLE_RESULT_SCALE = 5 # 3
+	BATTLE_RESULT_CAP = 30.0 # 20
+
+	LAND_MORALE_DAMAGE_MODIFIER = 1 #1.5
+	NAVAL_MORALE_DAMAGE_MODIFIER = 1.5 # 2.5
+
+	WAR_EXHAUTION_FROM_LOSSES = 5.0	#4.5
+
+	#DAYS_PER_SIEGE_PHASE_WITHOUT_FORT = 20 #15
+	ASSAULT_DEFENDER_LOSS = 0.07 # 0.1
+	
+	SIEGE_DISEASE_IMPACT = 0.07 #0.05
+	SIEGE_MEMORY = 16 # 11
+	MAX_BREACH = 3 # 1
+	
+	ASSAULT_WIDTH_LIMIT = 4 # 3
+
+	SIEGE_SUPPLY_SHORTAGE_LOSS = 0.03 # 0.02
+	
+	SIEGE_FOOD_SHORTAGE_LOSS = 0.05 # 0.03
+	
+	SIEGE_WATER_SHORTAGE_LOSS = 0.075 # 0.05
+	
+	SIEGE_DEFENDER_DESERTION_LOSS = 0.125 # 0.1
+	
+	SIEGE_BREACH_LOSS = 0.075 # 0.05
+}
+
+NDiplomacy = {
+	DEFAULT_WARGOAL_BATTLESCORE_BONUS = 8	# 3		# Battle score bonus from winning battles 
+	WARSCORE_MAX_FROM_BATTLES = 50	# 40			# maximum amount to get from a battles .
+	AE_IMPACT_ON_OPINION = -1.2 #-4
+}
+
+NAI = {
+	#Religion:
+	PANTHEON_HOLY_SITE_WEIGHT = 1.0 #Additive Value: Additional Weight for selecting a deity with a Holy Site within our borders
+	PANTHEON_STICKINESS_WEIGHT = 5.0 #Additive Value: Extra stickiness for currently selected deities to discourage strobing.
+	
+	#Peace
+	PEACE_RESPITE_MONTHS = 1 #Anti-ragequit device applied to human player on Easy and Normal; don't DOW them if they had no time to rest.
+
+	#Culture:
+	CULTURE_CHANGE_POPCOUNT_THRESHOLD = 75 # cultures beneath this pop count will be ignored for integration
+	CULTURE_CHANGE_THRESHOLD = 0.125 # how large amount of the population a culture needs to be considered for integration
+
+
+	PEACE_ACCEPTANCE_EXHAUSTION = -15 # -10
+	PEACE_ACCEPTANCE_DESPERATION = -20 # -10
+	PEACE_ACCEPTANCE_WAR_BALANCE_PLUS = 60 # 80 	#Scaling for positive enthusiasm/negative acceptance. Underlying factor has been squared so as long as balance isn't completely uneven this will be far closer to 0.
+	PEACE_ACCEPTANCE_WAR_GOAL = 15 # 10
+	PEACE_ACCEPTANCE_CAPITAL = 20 # 10
+	PEACE_ACCEPTANCE_DIRECTION = 12 # 10
+}

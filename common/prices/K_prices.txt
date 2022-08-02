@@ -1,0 +1,85 @@
+﻿enact_holy_site = {
+	political_influence = 50
+	gold = 200
+}
+
+price_found_city = {
+	political_influence = 25
+	gold = 250
+}
+
+raid = {
+	aggressive_expansion = 0.5
+}
+
+change_diplomatic_stance = {
+	political_influence = 15
+}
+
+change_pantheon = {
+	political_influence = 15
+}
+
+war_no_cb = {
+	political_influence = 15
+	aggressive_expansion = 3
+	war_exhaustion = 3
+}
+
+war_breaking_truce = {
+	stability = 30
+	aggressive_expansion = 20
+	war_exhaustion = 5
+}
+
+price_local_civ_button = {
+	political_influence = 50
+	gold = 450
+}
+
+enact_law = {
+	political_influence = 40
+	stability = 10
+}
+
+fabricate_claim = {
+	gold = 25
+}
+
+subject_pays_feudatory = {
+	scaled_manpower = 0.1 
+	scaled_gold = 0.1
+}
+
+subject_pays_tributary = {
+	scaled_gold = 0.35 #0.15
+}
+
+subject_client_state_pays = {
+	scaled_gold = 0.25
+}
+
+subject_pays_vassal = {
+	scaled_manpower = 0.15
+	scaled_gold = 0.05
+}
+
+subject_colony_pays = {
+	scaled_gold = 0.2
+}
+
+
+#Need icons
+
+price_state_investment_administration = {
+	political_influence = 80
+}
+price_state_investment_manpower = {
+	political_influence = 80
+}
+price_state_investment_acedemic = {
+	political_influence = 80
+}
+price_state_investment_civ = {
+	political_influence = 80
+}
